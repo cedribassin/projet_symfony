@@ -1,7 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PersonnageController!{% endblock %}
+{% block title %}Personnages{% endblock %}
 
+{% block monTitre %}Liste de personnages{% endblock %}
 {% block body %}
-<h1>Liste des personnages</h1>
+<!-- avec asset, c'est twig et symfony qui géreront les emplacements des images et leur gestion -->
+{# <img src="{{ asset("images/personnages/Marc.png") }}">
+<div> Nom: {{pseudo}} </div>
+<div> Age: {{age}}</div>
+<div> Force: {{caract.force}}</div>
+<div> Agilité: {{caract.agi}}</div>
+<div> Intelligence: {{caract.intel}}</div> #}
+<table class="table">
+    <tr class="thead-dark">
+        <th>Image</th>
+        <th>Nom</th>
+        <th>Age</th>
+        <th>Sexe</th>
+        <th>Force</th>
+        <th>Agilité</th>
+        <th>Intelligence</th> 
+    </tr>
+    {% for joueur in joueurs %}
+        <tr>
+                <td><img src="{{asset('images/personnages/' ~ joueur.nom ~ '.png')}}"></td>
+                <!--Ici path() prend un 2ème argument: un objet JSON qui indiquera les info qu'on veut envoyer
+                , ici il s'agit du nom car c'est ce qu'attend la route. |lower = fonction twig pour avoir le nom 
+                en minuscule -->
+                <td><a href="{{ path('afficherPersonnage', {'nom' : joueur.nom|lower}) }}">{{joueur.nom}}</a></td>
+                <td>{{joueur.age}}</td>
+                <td>{% if joueur.sexe %}
+                    Homme
+                    {% else %}
+                    Femme
+                    {% endif %}
+                </td>
+                <td>{{joueur.caract.force}}</td>
+                <td>{{joueur.caract.agi}}</td>
+                <td>{{joueur.caract.intel}}</td>
+        </tr>
+    {% endfor %}
+</table>
+
 {% endblock %}

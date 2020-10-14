@@ -2,11 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Personnage;
+use App\Entity\Arme;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-class PersonnageController extends AbstractController
+class ArmesController extends AbstractController
 {
     /**
      * @Route("/", name="accueil")
@@ -17,20 +17,20 @@ class PersonnageController extends AbstractController
     }
 
     /**
-     * @Route("/persos", name="personnages")
+     * @Route("/arme", name="arme")
      */
-    public function persos()
+    public function armes()
     {
-        Personnage::creerPersonnage();
-        return $this->render('personnage/persos.html.twig', [
-            "joueurs" => Personnage::$personnages
+        Arme::creeArmes();
+        return $this->render('arme/armes.html.twig', [
+            "armes"=>Arme::$armes
         ]);
     }
 
      /**
      * @Route("/persos/{nom}", name="afficherPersonnage")
      */
-    public function afficherPersonnage($nom)
+    /* public function afficherPersonnage($nom)
     {
         Personnage::creerPersonnage();
         //On récupère un personnage en créant la fonction getPersonnageParNom()
@@ -38,5 +38,5 @@ class PersonnageController extends AbstractController
         return $this->render('personnage/perso.html.twig',[
             "perso"=>$personnage
         ]);
-    }
+    } */
 }

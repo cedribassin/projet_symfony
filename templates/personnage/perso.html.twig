@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Personnages{% endblock %}
+
+{% block monTitre %}
+<!--On récupère "nom" grace a afficherPersonnage() du controller qui retourne nom-->
+Personnage {{perso.nom}}
+{% endblock %}
+{% block body %}
+<div class ="row">
+    <div class ="col-2">
+        <img src="{{asset('images/personnages/' ~ perso.nom ~ '.png')}}" style="width: 125px;">
+    </div>
+    <div class="col-10">
+       <h3>{{perso.nom}}</h3>
+       Age: {{perso.age}} ans</br>
+       Sexe: {% if perso.sexe %}
+       Homme
+       {% else %}
+       Femme
+       {% endif %}</br>
+       <h3>Caractéristiques</h3>
+       Force: {{perso.caract.force}}</br>
+       Agilité: {{perso.caract.agi}}</br>
+       Intelligence: {{perso.caract.intel}}</br>
+
+
+    </div>
+
+</div>
+
+{% endblock %}
