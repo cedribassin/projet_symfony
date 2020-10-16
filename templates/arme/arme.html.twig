@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon arme{% endblock %}
+
+{% block monTitre %}
+<!--On récupère "nom" grace a afficherArme() du controller qui retourne nom-->
+Mon {{arme.nom}}
+{% endblock %}
+{% block body %}
+<div class ="row">
+    <div class ="col-2">
+        <img src="{{asset('images/armes/' ~ arme.nom|replace({"é":"e"}) ~ '.png')}}" style="width: 125px;">
+    </div>
+    <div class="col-10">
+       {{arme.nom}}</br>
+        {{arme.description}}</br>
+        dégats: {{arme.degat}}</br>
+
+    </div>
+
+</div>
+
+{% endblock %}

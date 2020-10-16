@@ -4,11 +4,11 @@ namespace App\Entity;
 
 Class Arme {
 
-
     private $nom;
     private $description;
     private $degat;
 
+    //Tableau qui récupère les armes créées
     public static $armes = [];
 
     public function __construct($nom, $description, $degat){
@@ -29,21 +29,26 @@ Class Arme {
     }
 
 
+    //Fonction qui permet de créer des armes (utile sans base de donnée)
     public static function creeArmes(){
-        $arme1 = new Arme("epee", "très tranchante", 4);
-        $arme2 = new Arme("arc", "arme de distance", 5);
-        $arme3 = new Arme("hache", "très puissante", 3);
+        //dans la mesure ou les armes sont stockées directement dans $armes;
+        // il n'est pas utile de les stocker dans des variables
+        new Arme("épée", "très tranchante", 4);
+        new Arme("arc", "arme de distance", 5);
+        new Arme("hache", "très puissante", 3);
     }
 
-    /* public function retireAccent($mot){
-        $aRechercher=["é", "è", "â", "ê"];
-        $aRemettre=["e", "e", "a", "e"];
-        $motModifie = str_replace($aRechercher, $aRemettre, $mot);
-        return $motModifie;
-        
-    } */
-
-
+    //Fonction qui permet de récupérer une arme en fonction de son nom
+    public static function getArmeParNom($nom){
+        foreach(self::$armes as $arme){
+            //La fontion strtolower() permet de mettre les lettres en minuscule
+            //La fonction str_replace de chercher les é, de les remplacer par e au niveau
+            // des noms d'armes
+            if(strtolower(str_replace("é", "e", $arme->nom)) === $nom){
+                return $arme;
+            }
+        }
+    }
 }
 
 ?>

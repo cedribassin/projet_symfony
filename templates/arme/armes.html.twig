@@ -15,10 +15,10 @@
         <div class="row m-3">
             {% for arme in armes %}
             <div class="col-3">
-                <img src="{{asset('images/armes/' ~ arme.nom  ~ '.png')}}">
+                <img src="{{asset('images/armes/' ~ arme.nom|replace({"é":"e"}) ~ '.png')}}">
             </div>
             <div class="col-9">
-                {{arme.nom}}
+                <a href="{{ path('afficherArme', {'nom' : arme.nom}) }}">{{arme.nom}}</a>
             </div>
             {% endfor %}
        </div>

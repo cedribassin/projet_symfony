@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Arme;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ArmesController extends AbstractController
 {
@@ -23,20 +23,23 @@ class ArmesController extends AbstractController
     {
         Arme::creeArmes();
         return $this->render('arme/armes.html.twig', [
+            //On envoie les info suivantes à notre vue:
             "armes"=>Arme::$armes
         ]);
     }
 
      /**
-     * @Route("/persos/{nom}", name="afficherPersonnage")
+     * @Route("/arme/{nom}", name="afficherArme")
      */
-    /* public function afficherPersonnage($nom)
+     public function afficherPersonnage($nom)
     {
-        Personnage::creerPersonnage();
-        //On récupère un personnage en créant la fonction getPersonnageParNom()
-        $personnage = Personnage:: getPersonnageParNom($nom);
-        return $this->render('personnage/perso.html.twig',[
-            "perso"=>$personnage
+        Arme::creeArmes();
+        //On récupère une arme en créant la fonction getArmeParNom()
+        $arme = Arme:: getArmeParNom($nom);
+        return $this->render('arme/arme.html.twig',[
+            //On renvoie dans cette vue l'arme qui aura été sélectionnée (grâce à
+            // la fonction getArmeParNom($nom) de la classe Arme )
+            "arme"=>$arme
         ]);
-    } */
+    } 
 }
